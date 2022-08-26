@@ -5,7 +5,7 @@ const TextInput = () => {
   return (
     <>
       <span>Just standard text input. </span>
-      <InputField placeholder="Enter your value here..." />
+      <InputField type="text" placeholder="Enter your value here..." />
     </>
   );
 };
