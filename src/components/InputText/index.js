@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 
 const InputText = ({ placeholder, type, step, min, max }) => {
-
-  const [state, setState] = useState({ inputVal: '' });
-  const handleChange = (e) => {
-    const inputVal = (e.target.validity.valid) ? e.target.value : state.inputVal;
-    setState({ inputVal });
-  }
+  const [state, setState] = useState(0);
+  const handleChange = event => {
+    const value = Math.max(min, Math.min(max, Number(event.target.value)));
+    setState(value);
+  };
   const clearInput = () => {
-    setState({ inputVal: '' });
+    setState({ value: '' });
   }
   return (
     <>
@@ -16,13 +15,13 @@ const InputText = ({ placeholder, type, step, min, max }) => {
       className="form-control"
       type={type}
       placeholder={placeholder}
-      value={state.inputVal}
-      onInput={handleChange}
+      value={state}
+      onChange={handleChange}
       step={step}
       min={min}
       max={max}
     />
-    <input type="button" value="clear" disabled={!state.inputVal} onClick={clearInput} />
+    <input type="button" value="clear" disabled={!state} onClick={clearInput} />
   </>
   );
  
